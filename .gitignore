@@ -1,0 +1,24 @@
+# Python virtual environment
+.venv/
+venv/
+env/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Environment/secrets
+.env
+*.env
+
+# Raw datasets
+dataset/raw/
+
+# Large model files
+*.pt
+*.pth
+*.bin
+*.safetensors
