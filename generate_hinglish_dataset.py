@@ -47,7 +47,11 @@ def devanagari_to_roman(text: str) -> str:
     cleaned = cleaned.replace("|", ".")   # danda (sentence end) -> period
     cleaned = cleaned.replace("~", "")    # stray ITRANS diacritic marks
     cleaned = cleaned.replace(".n", "n")  # anusvara artifact cleanup (e.g. "jaaeM.N" -> "jaaen")
-    cleaned = cleaned.replace("  ", " ").strip()
+
+    import re
+    cleaned = re.sub(r"[\u0900-\u097F]", "", cleaned)      # strip any leftover untransliterated Devanagari chars
+    cleaned = re.sub(r"\.(?=[a-z])", "", cleaned)           # remove mid-word period artifacts (period followed directly by a letter, no space)
+    cleaned = re.sub(r"\s+", " ", cleaned).strip()
 
     return cleaned
 
